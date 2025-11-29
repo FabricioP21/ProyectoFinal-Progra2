@@ -1,0 +1,14 @@
+﻿<Window x:Class="Proy_Fin.MenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Menú Principal" Height="450" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="SISTEMA VETERINARIA" FontSize="24" FontWeight="Bold" Margin="0,0,0,30" HorizontalAlignment="Center"/>
+            <Button Content="Registrar Mascota" Click="btnRegistro_Click" Width="250" Height="40" Margin="5"/>
+            <Button Content="Asignar Doctor" Click="btnDoctor_Click" Width="250" Height="40" Margin="5"/>
+            <Button Content="Ver Historial" Click="btnHistorial_Click" Width="250" Height="40" Margin="5"/>
+            <Button Content="SERVICIOS (Donación/Adopción)" Click="btnServicios_Click" Width="250" Height="40" Margin="5,20,5,5" Background="Green" Foreground="White"/>
+        </StackPanel>
+    </Grid>
+</Window>
