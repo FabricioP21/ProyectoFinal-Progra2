@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Proy_Fin
 {
-    public class Persona : SerVivo
+    public abstract class Persona
     {
-        public string? Apellido { get; set; }
-        public string? CI { get; set; }
+        public string Apellido { get; set; }
+        public string CI { get; set; }
+        public abstract string ObtenerTipo();
     }
+
 }
