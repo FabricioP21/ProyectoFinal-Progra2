@@ -1,0 +1,246 @@
+﻿<Window x:Class="SistemaVeterinaria.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sistema de Veterinaria" Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#2196F3" Padding="15">
+            <TextBlock Text="Sistema de Gestión Veterinaria" 
+                       FontSize="24" FontWeight="Bold" 
+                       Foreground="White" HorizontalAlignment="Center"/>
+        </Border>
+
+        <!-- Main Content -->
+        <TabControl Grid.Row="1" Margin="10">
+
+            <!-- Tab Clientes -->
+            <TabItem Header="Clientes">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Formulario Cliente -->
+                    <GroupBox Header="Datos del Cliente" Margin="5" Padding="10">
+                        <StackPanel>
+                            <Label Content="Apellido:"/>
+                            <TextBox x:Name="txtClienteApellido" Margin="0,0,0,10"/>
+
+                            <Label Content="CI:"/>
+                            <TextBox x:Name="txtClienteCI" Margin="0,0,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                                <Button Content="Nuevo" Width="80" Margin="5" Click="BtnNuevoCliente_Click"/>
+                                <Button Content="Guardar" Width="80" Margin="5" Click="BtnGuardarCliente_Click" Background="#4CAF50" Foreground="White"/>
+                                <Button Content="Eliminar" Width="80" Margin="5" Click="BtnEliminarCliente_Click" Background="#f44336" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Lista Clientes -->
+                    <GroupBox Header="Lista de Clientes" Grid.Column="1" Margin="5">
+                        <DataGrid x:Name="dgClientes" AutoGenerateColumns="False" 
+                                  SelectionChanged="DgClientes_SelectionChanged"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="*"/>
+                                <DataGridTextColumn Header="CI" Binding="{Binding CI}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Animales -->
+            <TabItem Header="Animales">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Formulario Animal -->
+                    <GroupBox Header="Datos del Animal" Margin="5" Padding="10">
+                        <StackPanel>
+                            <Label Content="Tipo de Animal:"/>
+                            <TextBox x:Name="txtTipoAnimal" Margin="0,0,0,10"/>
+
+                            <Label Content="Raza:"/>
+                            <TextBox x:Name="txtRaza" Margin="0,0,0,10"/>
+
+                            <Label Content="Cliente (CI):"/>
+                            <ComboBox x:Name="cmbClienteAnimal" DisplayMemberPath="CI" Margin="0,0,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                                <Button Content="Nuevo" Width="80" Margin="5" Click="BtnNuevoAnimal_Click"/>
+                                <Button Content="Guardar" Width="80" Margin="5" Click="BtnGuardarAnimal_Click" Background="#4CAF50" Foreground="White"/>
+                                <Button Content="Eliminar" Width="80" Margin="5" Click="BtnEliminarAnimal_Click" Background="#f44336" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Lista Animales -->
+                    <GroupBox Header="Lista de Animales" Grid.Column="1" Margin="5">
+                        <DataGrid x:Name="dgAnimales" AutoGenerateColumns="False" 
+                                  SelectionChanged="DgAnimales_SelectionChanged"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding TipoAnimal}" Width="*"/>
+                                <DataGridTextColumn Header="Raza" Binding="{Binding Raza}" Width="*"/>
+                                <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteCI}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Atenciones -->
+            <TabItem Header="Atenciones">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Formulario Atención -->
+                    <GroupBox Header="Nueva Atención" Margin="5" Padding="10">
+                        <StackPanel>
+                            <Label Content="Fecha:"/>
+                            <DatePicker x:Name="dpFechaAtencion" Margin="0,0,0,10"/>
+
+                            <Label Content="Hora:"/>
+                            <TextBox x:Name="txtHoraAtencion" Margin="0,0,0,10" Text="00:00"/>
+
+                            <Label Content="Animal:"/>
+                            <ComboBox x:Name="cmbAnimalAtencion" DisplayMemberPath="Display" Margin="0,0,0,10"/>
+
+                            <Label Content="Doctor:"/>
+                            <ComboBox x:Name="cmbDoctorAtencion" DisplayMemberPath="Display" Margin="0,0,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                                <Button Content="Nuevo" Width="80" Margin="5" Click="BtnNuevaAtencion_Click"/>
+                                <Button Content="Guardar" Width="80" Margin="5" Click="BtnGuardarAtencion_Click" Background="#4CAF50" Foreground="White"/>
+                                <Button Content="Eliminar" Width="80" Margin="5" Click="BtnEliminarAtencion_Click" Background="#f44336" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Lista Atenciones -->
+                    <GroupBox Header="Lista de Atenciones" Grid.Column="1" Margin="5">
+                        <DataGrid x:Name="dgAtenciones" AutoGenerateColumns="False" 
+                                  SelectionChanged="DgAtenciones_SelectionChanged"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat=dd/MM/yyyy}" Width="*"/>
+                                <DataGridTextColumn Header="Hora" Binding="{Binding Hora}" Width="*"/>
+                                <DataGridTextColumn Header="Animal" Binding="{Binding AnimalInfo}" Width="*"/>
+                                <DataGridTextColumn Header="Doctor" Binding="{Binding DoctorInfo}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Doctores -->
+            <TabItem Header="Doctores">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Formulario Doctor -->
+                    <GroupBox Header="Datos del Doctor" Margin="5" Padding="10">
+                        <StackPanel>
+                            <Label Content="Apellido:"/>
+                            <TextBox x:Name="txtDoctorApellido" Margin="0,0,0,10"/>
+
+                            <Label Content="CI:"/>
+                            <TextBox x:Name="txtDoctorCI" Margin="0,0,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                                <Button Content="Nuevo" Width="80" Margin="5" Click="BtnNuevoDoctor_Click"/>
+                                <Button Content="Guardar" Width="80" Margin="5" Click="BtnGuardarDoctor_Click" Background="#4CAF50" Foreground="White"/>
+                                <Button Content="Eliminar" Width="80" Margin="5" Click="BtnEliminarDoctor_Click" Background="#f44336" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Lista Doctores -->
+                    <GroupBox Header="Lista de Doctores" Grid.Column="1" Margin="5">
+                        <DataGrid x:Name="dgDoctores" AutoGenerateColumns="False" 
+                                  SelectionChanged="DgDoctores_SelectionChanged"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="*"/>
+                                <DataGridTextColumn Header="CI" Binding="{Binding CI}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Servicios -->
+            <TabItem Header="Servicios">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Formulario Servicio -->
+                    <GroupBox Header="Datos del Servicio" Margin="5" Padding="10">
+                        <StackPanel>
+                            <Label Content="Nombre:"/>
+                            <TextBox x:Name="txtServicioNombre" Margin="0,0,0,10"/>
+
+                            <Label Content="Peso:"/>
+                            <TextBox x:Name="txtServicioPeso" Margin="0,0,0,10"/>
+
+                            <Label Content="Precio MAC:"/>
+                            <TextBox x:Name="txtServicioPrecioMac" Margin="0,0,0,10"/>
+
+                            <Label Content="Edad:"/>
+                            <TextBox x:Name="txtServicioEdad" Margin="0,0,0,10"/>
+
+                            <Label Content="Sexo:"/>
+                            <ComboBox x:Name="cmbServicioSexo" Margin="0,0,0,10">
+                                <ComboBoxItem Content="Macho"/>
+                                <ComboBoxItem Content="Hembra"/>
+                            </ComboBox>
+
+                            <Label Content="Tipo:"/>
+                            <TextBox x:Name="txtServicioTipo" Margin="0,0,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                                <Button Content="Nuevo" Width="80" Margin="5" Click="BtnNuevoServicio_Click"/>
+                                <Button Content="Guardar" Width="80" Margin="5" Click="BtnGuardarServicio_Click" Background="#4CAF50" Foreground="White"/>
+                                <Button Content="Eliminar" Width="80" Margin="5" Click="BtnEliminarServicio_Click" Background="#f44336" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <!-- Lista Servicios -->
+                    <GroupBox Header="Lista de Servicios" Grid.Column="1" Margin="5">
+                        <DataGrid x:Name="dgServicios" AutoGenerateColumns="False" 
+                                  SelectionChanged="DgServicios_SelectionChanged"
+                                  CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="*"/>
+                                <DataGridTextColumn Header="Precio" Binding="{Binding PrecioMac, StringFormat=C}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
